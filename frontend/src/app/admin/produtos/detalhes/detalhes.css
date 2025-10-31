@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Clear+Sans&family=Montserrat:wght@600&display=swap');
+
+body {
+  background: transparent;
+}
+
+.detalhes-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 25px 35px;
+  font-family: 'Clear Sans', sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* --- TÍTULO --- */
+.titulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.titulo-preto {
+  color: #2e4d49;
+}
+
+.titulo-verde {
+  color: #8faaa3;
+}
+
+.iconeTitulo {
+  color: #2e4d49;
+}
+
+.linha {
+  border: none;
+  border-top: 1px solid #dcdcdc;
+  margin: 10px 0 25px;
+}
+
+/* --- FORMULÁRIO --- */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.linha-inputs {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo.full {
+  width: 100%;
+}
+
+/* Labels */
+.campo label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #2e4d49;
+}
+
+/* Input com ícone */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 35px 10px 10px;
+  border: 1.5px solid #a8c0b9;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #333;
+  background-color: #f7f9f8;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.input-wrapper input::placeholder {
+  color: #9fb5ad;
+}
+
+.input-wrapper input:focus {
+  border-color: #7a9690;
+  box-shadow: 0 0 3px rgba(143, 170, 163, 0.5);
+}
+
+/* Ícones dentro do input */
+.icone-input {
+  position: absolute;
+  right: 10px;
+  color: #8faaa3;
+  pointer-events: none;
+}
+
+/* --- RESPONSIVIDADE --- */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .detalhes-container {
+    padding: 20px 25px;
+  }
+
+  .titulo {
+    font-size: 1.2rem;
+  }
+
+  .linha-inputs {
+    gap: 15px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .detalhes-container {
+    padding: 20px;
+  }
+
+  .linha-inputs {
+    flex-direction: column;
+  }
+
+  .campo {
+    width: 100%;
+  }
+
+  .titulo {
+    font-size: 1.1rem;
+  }
+
+  .input-wrapper input {
+    font-size: 0.85rem;
+    padding: 9px 32px 9px 9px;
+  }
+
+  .icone-input {
+    size: 16px;
+  }
+}

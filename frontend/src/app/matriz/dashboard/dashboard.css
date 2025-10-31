@@ -1,0 +1,55 @@
+.container {
+  padding: 20px;
+}
+
+.titulo-dashboard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.iconeTitulo {
+  color: #8faaa3;
+  font-size: 2rem;
+}
+
+.titulo-texto {
+  font-size: 2.3rem;
+  color: #566363;
+  font-weight: 400; 
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-exportar {
+  background-color: #8faaa3;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 30px; 
+}
+
+.btn-exportar:hover {
+  background-color: #7a9690;
+  transform: scale(1.03);
+}
+
+@media (max-width: 700px) {
+  .titulo-texto {
+    font-size: 1.8rem;
+  }
+
+  .btn-exportar {
+    width: 100%;
+    justify-content: center;
+  }
+}

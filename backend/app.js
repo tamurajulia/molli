@@ -1,0 +1,1 @@
+console.log('Servidor iniciado em portal tal')
