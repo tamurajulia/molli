@@ -68,7 +68,6 @@ export default function EstoqueTable() {
         <span className="titulo-verde"> Estoque:</span>
       </h2>
 
-      {/* FILTROS */}
       <div className="filtros">
         <div className="campo">
           <label className="tituloInput">Categoria:</label>
@@ -107,7 +106,7 @@ export default function EstoqueTable() {
         </button>
       </div>
 
-      <Link href="/admin/estoque/cadastrar">
+      <Link href="/matriz/estoque/cadastrar">
         <button className="botao-cadastrar">Cadastrar</button>
       </Link>
 
@@ -144,7 +143,7 @@ export default function EstoqueTable() {
                       title="Excluir"
                       onClick={() => setIdExcluir(item.id)}
                     />
-                    <Link href="/admin/estoque/editar">
+                    <Link href="/matriz/estoque/editar">
                       <Edit3 className="icone" title="Editar" />
                     </Link>
                     <PackageSearch
@@ -177,7 +176,6 @@ export default function EstoqueTable() {
         )}
       </div>
 
-      {/* MODAL EXCLUSÃO */}
       {idExcluir && (
         <div className="modal-overlay" onClick={() => setIdExcluir(null)}>
           <div className="modal-excluir" onClick={(e) => e.stopPropagation()}>
@@ -198,7 +196,6 @@ export default function EstoqueTable() {
         </div>
       )}
 
-      {/* MODAL DETALHES */}
       {mostrarModalDetalhes && produtoSelecionado && (
         <div className="overlay">
           <div className="modal-excluir animate-modal">

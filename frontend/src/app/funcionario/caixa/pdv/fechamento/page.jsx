@@ -7,7 +7,6 @@ import "./fechamento.css";
 export default function FechamentoCaixa() {
   return (
     <div className="fechamento-container">
-      {/* --- TÍTULO --- */}
       <div className="titulo">
         <img
           src="/IMG/icones/caixa.png"
@@ -19,7 +18,6 @@ export default function FechamentoCaixa() {
         </h1>
       </div>
 
-      {/* --- RESUMO DO DIA --- */}
       <div className="card">
         <div className="card-header">
           <span className="esquerda">Resumo do dia</span>
@@ -44,14 +42,12 @@ export default function FechamentoCaixa() {
         </div>
       </div>
 
-      {/* --- FORMA DE PAGAMENTO --- */}
       <div className="card">
         <div className="card-header">
           <span className="esquerda">Forma de pagamento</span>
         </div>
 
         <div className="card-body">
-          {/* Cabeçalho de colunas */}
           <div className="linha cabecalho-forma">
             <div className="col">
               <p>Forma</p>
@@ -64,7 +60,6 @@ export default function FechamentoCaixa() {
             </div>
           </div>
 
-          {/* Cartão de crédito */}
           <div className="linha">
             <div className="col">
               <p>Cartão de crédito</p>
@@ -77,7 +72,6 @@ export default function FechamentoCaixa() {
             </div>
           </div>
 
-          {/* Cartão de débito */}
           <div className="linha">
             <div className="col">
               <p>Cartão de débito</p>
@@ -90,7 +84,6 @@ export default function FechamentoCaixa() {
             </div>
           </div>
 
-          {/* Pix */}
           <div className="linha">
             <div className="col">
               <p>Pix</p>
@@ -103,7 +96,6 @@ export default function FechamentoCaixa() {
             </div>
           </div>
 
-          {/* Total geral */}
           <div className="linha total-geral">
             <div className="col">
               <p><strong>Total geral</strong></p>
@@ -118,7 +110,6 @@ export default function FechamentoCaixa() {
         </div>
       </div>
 
-      {/* --- BOTÕES --- */}
       <div className="botoes">
         <button className="btn-relatorio">
           <Printer size={18} />

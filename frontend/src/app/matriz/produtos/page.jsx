@@ -157,7 +157,7 @@ export default function Produtos() {
         </button>
       </div>
 
-      <Link href="/admin/estoque/cadastrar">
+      <Link href="/matriz/estoque/cadastrar">
         <button className="botao-cadastrar">Cadastrar</button>
       </Link>
 
@@ -195,7 +195,7 @@ export default function Produtos() {
                       onClick={() => abrirModalExcluir(item)}
                       title="Excluir"
                     />
-                    <Link href="/admin/produtos/editar">
+                    <Link href="/matriz/produtos/editar">
                       <Edit3 className="icone" title="Editar" />
                     </Link>
                     <PackageSearch

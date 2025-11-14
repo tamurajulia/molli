@@ -28,11 +28,11 @@ body {
 }
 
 .titulo-verde {
-  color: #8faaa3;
+  color: #566363;
 }
 
 .iconeTitulo {
-  color: #2e4d49;
+  color: #566363;
   margin-right: 4px;
 }
 
@@ -43,7 +43,6 @@ body {
   color: #443f3f;
 }
 
-/* --- TABELA (DESKTOP) --- */
 .tabelaContainer {
   background-color: #f7f9f8;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -52,7 +51,7 @@ body {
 
 .subtitulo {
   text-align: center;
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
@@ -69,7 +68,7 @@ body {
 }
 
 .tabela th {
-  background-color: #d4dedb;
+  background-color: #5663635e;
   padding: 12px 10px;
   color: #222;
   font-weight: 600;
@@ -86,7 +85,6 @@ body {
   background-color: #f2f6f5;
 }
 
-/* --- ÍCONES --- */
 .acoes {
   display: flex;
   gap: 10px;
@@ -94,17 +92,16 @@ body {
 }
 
 .icone {
-  color: #8faaa3;
+  color: #566363;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .icone:hover {
   transform: scale(1.15);
-  color: #6d8982;
+  color: #566363;
 }
 
-/* --- RESPONSIVIDADE --- */
 @media (max-width: 600px) {
   .tabelaContainer {
     background: none;
@@ -121,10 +118,9 @@ body {
   }
 
   .tabela {
-    display: none; /* esconde tabela */
+    display: none; 
   }
 
-  /* Cards no mobile */
   .card-pedido {
     background: #f8faf9;
     padding: 15px;
@@ -154,28 +150,27 @@ body {
     height: 20px;
   }
 }
-/* --- BOTÃO CADASTRAR --- */
+
 .botao-cadastrar {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   border: none;
-  border-radius: 8px; /* sem bordas arredondadas */
-  padding: 12px 40px;
+  border-radius: 8px; 
+  padding: 10px 40px;
   cursor: pointer;
   font-size: 1rem;
-  text-transform: none; /* mantém o "Cadastrar" com apenas a inicial maiúscula */
+  text-transform: none;
   transition: background 0.2s ease;
   display: inline-block;
-  margin-bottom: 20px;
+
 }
 
 .botao-cadastrar:hover {
-  background-color: #7a9690;
+  background-color: #434b4b;
 }
 
-/* --- FILTROS --- */
 .filtros {
   display: flex;
   align-items: flex-end;
@@ -205,19 +200,3 @@ body {
   
 }
 
-.botao-filtrar {
-  background-color: #8faaa3;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  border: none;
-
-  padding: 10px 25px;
-  cursor: pointer;
-  transition: background 0.2s;
-  height: fit-content;
-}
-
-.botao-filtrar:hover {
-  background-color: #7a9690;
-}

@@ -1,18 +1,24 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh; 
+  height: 100vh;
   background-color: #566363;
   color: white;
   width: 240px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; 
   padding: 15px 10px;
-  overflow-y: auto; 
-  overflow-x: hidden; 
+  overflow-y: hidden; 
+  overflow-x: hidden;
   z-index: 1000;
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -116,30 +122,42 @@
   .sidebar {
     position: fixed;
     width: 60px;
-    z-index: 1000;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 10px;
+    overflow-y: hidden; 
   }
 
-  .sidebar.open {
-    width: 240px;
+  .menu {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 
-  .menu-item span {
-    display: none;
-  }
-
-  .sidebar.open .menu-item span {
-    display: inline;
+  .bottom-section {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 15px;
   }
 
   .user-box {
-    display: none;
-  }
-
-  .sidebar.open .user-box {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
   }
 
-  .toggle-btn {
-    display: none !important;
+  .avatar i {
+    font-size: 28px;
+  }
+
+  .logo {
+    width: 90px;
   }
 }

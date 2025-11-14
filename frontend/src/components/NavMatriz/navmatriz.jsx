@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./navmatriz.css";
 import ProfileModal from "../ProfileModal/ProfileModal";
 
 export default function NavMatriz() {
-  
   const [isOpen, setIsOpen] = useState(undefined);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState("/IMG/navbar/LogoMatriz.png");
+  const router = useRouter(); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,7 +22,7 @@ export default function NavMatriz() {
       }
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -35,6 +36,10 @@ export default function NavMatriz() {
     filial: "Unidade Matriz - SP",
   };
 
+  const handleLogout = () => {
+    router.push("/"); 
+  };
+
   return (
     <>
       <aside className={`sidebar ${isOpen ? "open" : "closed"}`}>
@@ -43,10 +48,7 @@ export default function NavMatriz() {
         </div>
 
         <nav className="menu">
-          <Link href="/matriz/dashboard" className="menu-item">
-            <i className="bi bi-speedometer2"></i>
-            {isOpen && <span>Dashboard</span>}
-          </Link>
+         
 
           <Link href="/matriz/financeiro" className="menu-item">
             <i className="bi bi-graph-up-arrow"></i>
@@ -85,22 +87,24 @@ export default function NavMatriz() {
         </nav>
 
         <div className="bottom-section">
-          {isOpen && (
-            <div
-              className="user-box"
-              onClick={() => setIsProfileOpen(true)}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="avatar">
-                <i className="bi bi-person-circle"></i>
-              </div>
-              <div className="user-info">
+          <div className={`user-box ${isOpen ? "" : "collapsed"}`}>
+            <div className="avatar" onClick={() => setIsProfileOpen(true)}>
+              <i className="bi bi-person-circle"></i>
+            </div>
+            {isOpen && (
+              <div className="user-info" onClick={() => setIsProfileOpen(true)}>
                 <p className="user-name">{user.nome}</p>
                 <p className="user-role">{user.cargo}</p>
               </div>
-              <i className="bi bi-box-arrow-right logout-icon"></i>
-            </div>
-          )}
+            )}
+            {isOpen && (
+              <i
+                className="bi bi-box-arrow-right logout-icon"
+                onClick={handleLogout}
+                title="Sair"
+              ></i>
+            )}
+          </div>
         </div>
       </aside>
 

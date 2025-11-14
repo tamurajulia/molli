@@ -5,7 +5,6 @@ body {
   font-family: 'Clear Sans', sans-serif;
 }
 
-/* ===== CONTAINER GERAL ===== */
 .cadastro-filial-container {
   display: flex;
   justify-content: center;
@@ -13,13 +12,12 @@ body {
   width: 90%;
   max-width: 950px;
   margin: 50px auto;
-  background: #8faaa3;
+  background: #566363;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== LADO ESQUERDO ===== */
 .lado-esquerdo {
   flex: 1;
   background: rgba(255, 255, 255, 0.1);
@@ -37,10 +35,9 @@ body {
   opacity: 0.9;
 }
 
-/* ===== LADO DIREITO ===== */
 .lado-direito {
   flex: 1.2;
-  background: #8faaa3;
+  background: #566363;
   color: white;
   padding: 40px;
   display: flex;
@@ -53,6 +50,7 @@ body {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 5px;
+  color: #181b1b;
 }
 
 .titulo-destaque {
@@ -65,7 +63,6 @@ body {
   margin-bottom: 25px;
 }
 
-/* ===== FORMULÁRIO ===== */
 .formulario-filial {
   display: flex;
   flex-direction: column;
@@ -102,7 +99,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* ===== BOTÃO ===== */
 .botao-cadastrar {
   margin-top: 10px;
   background-color: #f7f9f8;
@@ -121,7 +117,6 @@ body {
   background-color: #e0ebe6;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
   .cadastro-filial-container {
     flex-direction: column;
@@ -149,7 +144,6 @@ body {
     width: 100%;
   }
 }
-/* Mantém todo o seu código original e apenas ADICIONA o que está abaixo */
 
 .linha-dupla {
     display: flex;
@@ -160,7 +154,6 @@ body {
     flex: 1;
   }
   
-  /* Input com ícone (data) */
   .input-com-icone {
     position: relative;
     flex: 1;

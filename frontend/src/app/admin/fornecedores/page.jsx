@@ -141,7 +141,7 @@ export default function FornecedoresTable() {
                   <th>CNPJ</th>
                   <th>Telefone</th>
                   <th>Endereço</th>
-                  <th>Tipo de Produto</th>
+                  <th>Categoria</th>
                   <th className="text-center">Ações</th>
                 </tr>
               </thead>

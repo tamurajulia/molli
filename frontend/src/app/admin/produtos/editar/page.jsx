@@ -19,7 +19,7 @@ export default function EditarProduto() {
         </div>
 
         <div className="campo">
-          <label>Fornecedor:</label>
+          <label>Estoque:</label>
           <input type="text" placeholder="Insira o fornecedor" />
         </div>
 
@@ -30,26 +30,23 @@ export default function EditarProduto() {
 
         <div className="linha">
           <div className="campo pequeno">
-            <label>Estoque:</label>
+            <label>Preço Custo:</label>
             <input type="number" placeholder="Quantidade em estoque" />
           </div>
 
-          <div className="campo pequeno">
-            <label>Preço:</label>
+          <div className="campo pequeno mt-5">
+            <label>Preço Venda:</label>
             <input type="text" placeholder="Insira o preço" />
           </div>
         </div>
 
         <div className="linha">
           <div className="campo pequeno">
-            <label>Código de barras:</label>
+            <label>SKU:</label>
             <input type="text" placeholder="Insira o código de barras" />
           </div>
 
-          <div className="campo pequeno">
-            <label>Ação:</label>
-            <input type="text" placeholder="Descreva a ação (ex: atualizar)" />
-          </div>
+      
         </div>
 
         <button type="submit" className="botao">

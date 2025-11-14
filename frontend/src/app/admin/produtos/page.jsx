@@ -17,7 +17,8 @@ export default function Produtos() {
       fornecedor: "Loja Matriz",
       categoria: "Roupas",
       estoque: 3,
-      preco: "R$ 120,00",
+      precoCusto: "R$ 80,00",
+      precoVenda: "R$ 120,00",
       codigo: "233949",
     },
     {
@@ -26,7 +27,8 @@ export default function Produtos() {
       fornecedor: "Loja 2",
       categoria: "Calçados",
       estoque: 5,
-      preco: "R$ 280,00",
+      precoCusto: "R$ 200,00",
+      precoVenda: "R$ 280,00",
       codigo: "9595005",
     },
     {
@@ -35,7 +37,8 @@ export default function Produtos() {
       fornecedor: "Loja Matriz",
       categoria: "Acessórios",
       estoque: 8,
-      preco: "R$ 60,00",
+      precoCusto: "R$ 40,00",
+      precoVenda: "R$ 60,00",
       codigo: "5858874",
     },
     {
@@ -43,17 +46,14 @@ export default function Produtos() {
       produto: "Calça Jeans",
       fornecedor: "Loja 3",
       categoria: "Roupas",
-      estoque: 4,
-      preco: "R$ 200,00",
+      estoque: 2,
+      precoCusto: "R$ 150,00",
+      precoVenda: "R$ 200,00",
       codigo: "998877",
     },
   ]);
 
-  const [filtros, setFiltros] = useState({
-    categoria: "",
-    fornecedor: "",
-  });
-
+  const [filtros, setFiltros] = useState({ categoria: "", fornecedor: "" });
   const [produtosFiltrados, setProdutosFiltrados] = useState(produtos);
 
   useEffect(() => {
@@ -157,14 +157,13 @@ export default function Produtos() {
         </button>
       </div>
 
-      <Link href="/admin/estoque/cadastrar">
+      <Link href="/admin/produtos/cadastrar">
         <button className="botao-cadastrar">Cadastrar</button>
       </Link>
 
-      {/* Tabela / Cards */}
+      {/* Tabela */}
       <div className="tabelaContainer">
         <h3 className="subtitulo">Produtos</h3>
-
         {!isMobile ? (
           <table className="tabela">
             <thead>
@@ -174,8 +173,9 @@ export default function Produtos() {
                 <th>Fornecedor</th>
                 <th>Categoria</th>
                 <th>Estoque</th>
-                <th>Preço</th>
-                <th>Código</th>
+                <th>Preço Custo</th>
+                <th>Preço Venda</th>
+                <th>SKU</th>
                 <th>Ação</th>
               </tr>
             </thead>
@@ -186,8 +186,22 @@ export default function Produtos() {
                   <td>{item.produto}</td>
                   <td>{item.fornecedor}</td>
                   <td>{item.categoria}</td>
-                  <td>{item.estoque}</td>
-                  <td>{item.preco}</td>
+                  <td
+                    className={
+                      item.estoque <= 5 ? "estoque-baixo" : ""
+                    }
+                  >
+                    {item.estoque <= 5 && (
+                      <AlertTriangle
+                        size={16}
+                        className="icone-alerta"
+                        title="Estoque baixo"
+                      />
+                    )}{" "}
+                    {item.estoque}
+                  </td>
+                  <td>{item.precoCusto}</td>
+                  <td>{item.precoVenda}</td>
                   <td>{item.codigo}</td>
                   <td className="acoes">
                     <XCircle
@@ -223,14 +237,22 @@ export default function Produtos() {
               <div className="linha-info">
                 <strong>Categoria:</strong> {item.categoria}
               </div>
-              <div className="linha-info">
-                <strong>Estoque:</strong> {item.estoque}
+              <div
+                className={`linha-info ${
+                  item.estoque <= 5 ? "estoque-baixo" : ""
+                }`}
+              >
+                <strong>Estoque:</strong>{" "}
+                {item.estoque <= 5 && (
+                  <AlertTriangle size={16} className="icone-alerta" />
+                )}{" "}
+                {item.estoque}
               </div>
               <div className="linha-info">
-                <strong>Preço:</strong> {item.preco}
+                <strong>Preço Venda:</strong> {item.precoVenda}
               </div>
               <div className="linha-info">
-                <strong>Código:</strong> {item.codigo}
+                <strong>SKU:</strong> {item.codigo}
               </div>
               <div className="acoes">
                 <XCircle
@@ -283,13 +305,30 @@ export default function Produtos() {
               <h3>Detalhes do Produto</h3>
             </div>
             <div className="modal-detalhes">
-              <p><strong>ID:</strong> {produtoSelecionado.id}</p>
-              <p><strong>Produto:</strong> {produtoSelecionado.produto}</p>
-              <p><strong>Fornecedor:</strong> {produtoSelecionado.fornecedor}</p>
-              <p><strong>Categoria:</strong> {produtoSelecionado.categoria}</p>
-              <p><strong>Estoque:</strong> {produtoSelecionado.estoque}</p>
-              <p><strong>Preço:</strong> {produtoSelecionado.preco}</p>
-              <p><strong>Código:</strong> {produtoSelecionado.codigo}</p>
+              <p>
+                <strong>ID:</strong> {produtoSelecionado.id}
+              </p>
+              <p>
+                <strong>Produto:</strong> {produtoSelecionado.produto}
+              </p>
+              <p>
+                <strong>Fornecedor:</strong> {produtoSelecionado.fornecedor}
+              </p>
+              <p>
+                <strong>Categoria:</strong> {produtoSelecionado.categoria}
+              </p>
+              <p>
+                <strong>Estoque:</strong> {produtoSelecionado.estoque}
+              </p>
+              <p>
+                <strong>Preço Custo:</strong> {produtoSelecionado.precoCusto}
+              </p>
+              <p>
+                <strong>Preço Venda:</strong> {produtoSelecionado.precoVenda}
+              </p>
+              <p>
+                <strong>Código:</strong> {produtoSelecionado.codigo}
+              </p>
             </div>
             <div className="botoes-modal">
               <button className="btn-confirmar" onClick={fecharModal}>

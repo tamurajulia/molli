@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./cadastro.css";
+import "./cadastrar.css";
 import { Boxes } from "lucide-react";
 
 export default function CadastroEstoque() {

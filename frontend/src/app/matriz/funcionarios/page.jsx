@@ -2,30 +2,26 @@
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import "./funcionarios.css";
-import { Users, XCircle, Edit3, UserCheck } from "lucide-react";
+import { Users, XCircle, Edit3, UserCheck, AlertTriangle } from "lucide-react";
 
 export default function Funcionarios() {
   const [isMobile, setIsMobile] = useState(false);
   const [cargoFiltro, setCargoFiltro] = useState("");
   const [filialFiltro, setFilialFiltro] = useState("");
   const [dadosFiltrados, setDadosFiltrados] = useState([]);
+  const [idExcluir, setIdExcluir] = useState(null);
+  const [idStatus, setIdStatus] = useState(null);
 
   const funcionarios = [
     { id: "01", funcionario: "João Almeida", cargo: "Caixa", filial: "Loja Matriz", salario: "R$2.000,00", status: "Ativo" },
     { id: "02", funcionario: "Letícia Body", cargo: "Estoquista", filial: "Loja 1", salario: "R$1.800,00", status: "Desativado" },
     { id: "03", funcionario: "Miguel Touca", cargo: "Vendedor", filial: "Loja 2", salario: "R$2.200,00", status: "Ativo" },
     { id: "04", funcionario: "Sofia Manta", cargo: "Gerente", filial: "Matriz", salario: "R$3.000,00", status: "Ativo" },
-    { id: "05", funcionario: "Lucas Paninho", cargo: "Repositor", filial: "Loja 3", salario: "R$1.600,00", status: "Esgotado" },
+    { id: "05", funcionario: "Lucas Paninho", cargo: "Repositor", filial: "Loja 3", salario: "R$1.600,00", status: "Desativado" },
   ];
 
-  // Gera listas únicas de cargos e filiais para popular os selects
-  const cargosUnicos = useMemo(() => {
-    return Array.from(new Set(funcionarios.map(f => f.cargo)));
-  }, [funcionarios]);
-
-  const filiaisUnicas = useMemo(() => {
-    return Array.from(new Set(funcionarios.map(f => f.filial)));
-  }, [funcionarios]);
+  const cargosUnicos = useMemo(() => [...new Set(funcionarios.map(f => f.cargo))], [funcionarios]);
+  const filiaisUnicas = useMemo(() => [...new Set(funcionarios.map(f => f.filial))], [funcionarios]);
 
   useEffect(() => {
     setDadosFiltrados(funcionarios);
@@ -40,7 +36,7 @@ export default function Funcionarios() {
 
   const filtrarFuncionarios = () => {
     const filtrados = funcionarios.filter((item) => {
-      const cargoMatch = cargoFiltro ? item.cargo === cargoFiltro : true; // igualdade exata para select
+      const cargoMatch = cargoFiltro ? item.cargo === cargoFiltro : true;
       const filialMatch = filialFiltro ? item.filial === filialFiltro : true;
       return cargoMatch && filialMatch;
     });
@@ -53,19 +49,32 @@ export default function Funcionarios() {
     setDadosFiltrados(funcionarios);
   };
 
+  const excluirFuncionario = () => {
+    const atualizados = dadosFiltrados.filter((f) => f.id !== idExcluir);
+    setDadosFiltrados(atualizados);
+    setIdExcluir(null);
+  };
+
+  const confirmarStatusFuncionario = () => {
+    const atualizados = dadosFiltrados.map((f) =>
+      f.id === idStatus
+        ? { ...f, status: f.status === "Ativo" ? "Desativado" : "Ativo" }
+        : f
+    );
+    setDadosFiltrados(atualizados);
+    setIdStatus(null);
+  };
+
   return (
     <div className="container">
-      {/* Título */}
       <h2 className="titulo">
         <Users className="iconeTitulo" size={22} />
         <span className="titulo-preto">Gerenciamento de</span>
         <span className="titulo-verde"> Funcionários:</span>
       </h2>
-
-      {/* FILTROS (SELECTS) */}
       <div className="filtros">
         <div className="campo">
-          <label>Cargo:</label>
+          <label className="titulo-preto">Cargo:</label>
           <select
             className="inputFocus"
             value={cargoFiltro}
@@ -81,7 +90,7 @@ export default function Funcionarios() {
         </div>
 
         <div className="campo">
-          <label>Filial vinculada:</label>
+          <label className="titulo-preto">Filial vinculada:</label>
           <select
             className="inputFocus"
             value={filialFiltro}
@@ -96,25 +105,20 @@ export default function Funcionarios() {
           </select>
         </div>
 
-        <button className="btnFiltrar" onClick={filtrarFuncionarios}>
-          Filtrar
-        </button>
-
-     
+        <button className="btnFiltrar" onClick={filtrarFuncionarios}>Filtrar</button>
+        <button className="btnFiltrar" onClick={limparFiltros}>Limpar</button>
       </div>
 
-      {/* BOTÃO CADASTRAR */}
-      <Link href="/admin/funcionarios/cadastrar">
+      <Link href="/matriz/funcionarios/cadastrar">
         <button className="botao-cadastrar">Cadastrar</button>
       </Link>
 
-      {/* TABELA */}
       <div className="tabelaContainer">
         <h3 className="subtitulo">Funcionários</h3>
 
         {!isMobile ? (
           <table className="tabela">
-            <thead className="table-light">
+            <thead>
               <tr>
                 <th>ID</th>
                 <th>Funcionário</th>
@@ -128,19 +132,21 @@ export default function Funcionarios() {
             <tbody>
               {dadosFiltrados.length > 0 ? (
                 dadosFiltrados.map((item) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} className={item.status === "Desativado" ? "linha-desativado" : ""}>
                     <td>{item.id}</td>
                     <td>{item.funcionario}</td>
                     <td>{item.cargo}</td>
                     <td>{item.filial}</td>
                     <td>{item.salario}</td>
-                    <td>{item.status}</td>
+                    <td className={item.status === "Ativo" ? "status-ativo" : "status-desativado"}>
+                      {item.status}
+                    </td>
                     <td className="acoes text-center">
-                      <XCircle className="icone" title="Excluir" />
-                      <Link href={`/admin/funcionarios/editar/${item.id}`}>
+                      <XCircle className="icone icone-excluir" title="Excluir" onClick={() => setIdExcluir(item.id)} />
+                      <Link href={`/matriz/funcionarios/editar/${item.id}`}>
                         <Edit3 className="icone" title="Editar" />
                       </Link>
-                      <UserCheck className="icone" title="Status" />
+                      <UserCheck className="icone" title="Status" onClick={() => setIdStatus(item.id)} />
                     </td>
                   </tr>
                 ))
@@ -155,24 +161,62 @@ export default function Funcionarios() {
           </table>
         ) : (
           dadosFiltrados.map((item) => (
-            <div className="card-fornecedor" key={item.id}>
-              <div className="linha-info"><strong>ID:</strong> {item.id}</div>
-              <div className="linha-info"><strong>Funcionário:</strong> {item.funcionario}</div>
-              <div className="linha-info"><strong>Cargo:</strong> {item.cargo}</div>
-              <div className="linha-info"><strong>Filial:</strong> {item.filial}</div>
-              <div className="linha-info"><strong>Salário:</strong> {item.salario}</div>
-              <div className="linha-info"><strong>Status:</strong> {item.status}</div>
+            <div className={`card-fornecedor ${item.status === "Desativado" ? "desativado" : ""}`} key={item.id}>
+              <div><strong>ID:</strong> {item.id}</div>
+              <div><strong>Funcionário:</strong> {item.funcionario}</div>
+              <div><strong>Cargo:</strong> {item.cargo}</div>
+              <div><strong>Filial:</strong> {item.filial}</div>
+              <div><strong>Salário:</strong> {item.salario}</div>
+              <div><strong>Status:</strong> {item.status}</div>
               <div className="acoes">
-                <XCircle className="icone" />
-                <Link href={`/admin/funcionarios/editar/${item.id}`}>
+                <XCircle className="icone" onClick={() => setIdExcluir(item.id)} />
+                <Link href={`/matriz/funcionarios/editar/${item.id}`}>
                   <Edit3 className="icone" />
                 </Link>
-                <UserCheck className="icone" />
+                <UserCheck className="icone" onClick={() => setIdStatus(item.id)} />
               </div>
             </div>
           ))
         )}
       </div>
+
+      {idExcluir && (
+        <div className="modal-overlay" onClick={() => setIdExcluir(null)}>
+          <div className="modal-excluir" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <AlertTriangle size={22} className="icone-modal" />
+              <h3>Confirmar exclusão</h3>
+            </div>
+            <p>Tem certeza que deseja excluir este funcionário?</p>
+            <div className="botoes-modal">
+              <button className="btn-cancelar" onClick={() => setIdExcluir(null)}>Cancelar</button>
+              <button className="btn-confirmar" onClick={excluirFuncionario}>Excluir</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {idStatus && (
+        <div className="modal-overlay" onClick={() => setIdStatus(null)}>
+          <div className="modal-excluir" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <UserCheck size={22} className="icone-modal" style={{ color: "#8FAAA3" }} />
+              <h3>Alterar status</h3>
+            </div>
+            <p>
+              {dadosFiltrados.find((f) => f.id === idStatus)?.status === "Ativo"
+                ? "Tem certeza que deseja desativar este funcionário?"
+                : "Tem certeza que deseja ativar este funcionário?"}
+            </p>
+            <div className="botoes-modal">
+              <button className="btn-cancelar" onClick={() => setIdStatus(null)}>Cancelar</button>
+              <button className="btn-confirmar" style={{ backgroundColor: "#8FAAA3" }} onClick={confirmarStatusFuncionario}>
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

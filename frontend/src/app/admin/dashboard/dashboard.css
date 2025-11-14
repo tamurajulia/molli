@@ -64,6 +64,12 @@
   padding: 20px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   color: #566363;
+  align-items: center;
+}
+.chart-box:nth-child(3) canvas {
+  width: 98% !important;
+  height: 250px !important;
+  margin-top: 75px;
 }
 
 .chart-box h3 {

@@ -10,8 +10,7 @@ export default function EstoqueTable() {
   const [filtroFornecedor, setFiltroFornecedor] = useState("");
   const [dadosFiltrados, setDadosFiltrados] = useState([]);
   const [idExcluir, setIdExcluir] = useState(null);
-  const [produtoSelecionado, setProdutoSelecionado] = useState(null); // NOVO estado para detalhes
-
+  const [produtoSelecionado, setProdutoSelecionado] = useState(null); 
   const dados = [
     { id: "01", produto: "Touca Miguel", quantidade: 8, categoria: "Touca", fornecedor: "Mimos Baby", status: "Disponível", preco: "R$ 45,00" },
     { id: "02", produto: "Body Letícia", quantidade: 3, categoria: "Body", fornecedor: "Rihappy", status: "Crítico", preco: "R$ 39,00" },
@@ -61,7 +60,6 @@ export default function EstoqueTable() {
         <span className="titulo-verde"> Estoque:</span>
       </h2>
 
-      {/* FILTROS */}
       <div className="filtros">
         <div className="campo">
           <label className="tituloInput">Categoria:</label>
@@ -170,7 +168,6 @@ export default function EstoqueTable() {
         )}
       </div>
 
-      {/* MODAL DE EXCLUSÃO */}
       {idExcluir && (
         <div className="modal-overlay" onClick={() => setIdExcluir(null)}>
           <div className="modal-excluir" onClick={(e) => e.stopPropagation()}>
@@ -191,7 +188,6 @@ export default function EstoqueTable() {
         </div>
       )}
 
-      {/* MODAL DE DETALHES */}
       {produtoSelecionado && (
         <div className="modal-overlay" onClick={() => setProdutoSelecionado(null)}>
           <div className="modal-excluir" onClick={(e) => e.stopPropagation()}>

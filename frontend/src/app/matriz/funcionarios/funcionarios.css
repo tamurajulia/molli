@@ -12,7 +12,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* --- TÍTULO --- */
 .titulo {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
@@ -28,7 +27,7 @@ body {
 }
 
 .titulo-verde {
-  color: #8faaa3;
+  color: #566363;
 }
 
 .iconeTitulo {
@@ -36,7 +35,6 @@ body {
   margin-right: 4px;
 }
 
-/* --- FILTROS --- */
 .filtros {
   display: flex;
   align-items: flex-end;
@@ -64,7 +62,7 @@ body {
   border: 1px solid transparent;
   padding: 10px 14px;
   font-size: 0.9rem;
-  color: #8faaa3;
+  color: #566363;
   border-radius: 9px;
   outline: none;
   transition:
@@ -86,14 +84,13 @@ body {
 .inputFocus:focus {
   border-color: rgba(143, 170, 163, 0.148);
   box-shadow: 0 0 0 3px #8faaa320;
-  color: #48645c;
+  color: #566363;
   font-weight: 600;
   background-color: #e7e7e7;
 }
 
-/* --- BOTÕES --- */
 .btnFiltrar {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -105,12 +102,12 @@ body {
 }
 
 .btnFiltrar:hover {
-  background-color: #7a9690;
+  background-color: #1b1e1e;
   transform: scale(1.03);
 }
 
 .botao-cadastrar {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -125,10 +122,9 @@ body {
 }
 
 .botao-cadastrar:hover {
-  background-color: #7a9690;
+  background-color: #303636;
 }
 
-/* --- TABELA --- */
 .tabelaContainer {
   background-color: #f7f9f8;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -137,7 +133,7 @@ body {
 
 .subtitulo {
   text-align: center;
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
@@ -154,7 +150,7 @@ body {
 }
 
 .tabela th {
-  background-color: #d4dedb;
+  background-color: #515b5b79;
   padding: 12px 10px;
   color: #222;
   font-weight: 600;
@@ -171,7 +167,6 @@ body {
   background-color: #f2f6f5;
 }
 
-/* --- ÍCONES --- */
 .acoes {
   display: flex;
   gap: 10px;
@@ -179,17 +174,16 @@ body {
 }
 
 .icone {
-  color: #8faaa3;
+  color: #566363;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .icone:hover {
   transform: scale(1.15);
-  color: #6d8982;
+  color: #2a3030;
 }
 
-/* --- RESPONSIVIDADE --- */
 @media (max-width: 600px) {
   .tabela {
     display: none;
@@ -212,4 +206,136 @@ body {
   .linha-info strong {
     color: #2e4d49;
   }
+}
+
+/* --- MODAL EXCLUSÃO PADRÃO --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-excluir {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: subir 0.25s ease;
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.icone-modal {
+  color: #8FAAA3; 
+}
+
+.modal-excluir p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.botoes-modal {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+/* Botão cancelar */
+.btn-cancelar {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background-color: #e0e0e0;
+}
+
+/* Botão confirmar */
+.btn-confirmar {
+  background-color: #566363;
+  color: #fff;
+}
+
+.btn-confirmar:hover {
+  background-color: #5c6c68;
+}
+
+
+/* Fundo escuro do modal */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Caixa modal */
+.modal-excluir {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.detalhes-produto p {
+  text-align: left;
+  margin: 6px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.detalhes-produto strong {
+  color: #2e4d49;
 }

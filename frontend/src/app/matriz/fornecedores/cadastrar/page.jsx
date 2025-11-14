@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./cadastro.css";
+import "./cadastrar.css";
 import { Building2 } from "lucide-react";
 
 export default function CadastroFornecedor() {

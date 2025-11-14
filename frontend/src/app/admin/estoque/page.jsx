@@ -1,8 +1,16 @@
 "use client";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import "./estoque.css";
-import { BarChart3, Edit3, PackageSearch, XCircle, AlertTriangle, Box } from "lucide-react";
+import {
+  BarChart3,
+  Edit3,
+  PackageSearch,
+  XCircle,
+  AlertTriangle,
+  Box,
+} from "lucide-react";
 
 export default function EstoqueTable() {
   const [isMobile, setIsMobile] = useState(false);
@@ -60,6 +68,21 @@ export default function EstoqueTable() {
     setProdutoSelecionado(null);
   };
 
+  // ✅ Define a cor e o ícone com base no estoque/status
+  const getStatusClass = (item) => {
+    if (item.status === "Sem estoque" || item.quantidade === 0) return "sem-estoque";
+    if (item.status === "Crítico" || item.quantidade <= 2) return "critico";
+    return "disponivel";
+  };
+
+  const getStatusIcon = (item) => {
+    if (item.status === "Sem estoque" || item.quantidade === 0)
+      return <AlertTriangle size={18} className="icone-status vermelho" title="Sem estoque" />;
+    if (item.status === "Crítico" || item.quantidade <= 2)
+      return <AlertTriangle size={18} className="icone-status amarelo" title="Estoque crítico" />;
+    return null;
+  };
+
   return (
     <div className="container">
       <h2 className="titulo">
@@ -102,9 +125,7 @@ export default function EstoqueTable() {
           </select>
         </div>
 
-        <button className="btnFiltrar" onClick={filtrar}>
-          Filtrar
-        </button>
+        <button className="btnFiltrar" onClick={filtrar}>Filtrar</button>
       </div>
 
       <Link href="/admin/estoque/cadastrar">
@@ -114,13 +135,14 @@ export default function EstoqueTable() {
       <div className="tabelaContainer">
         <h3 className="subtitulo">Estoque</h3>
 
+        {/* ===== TABELA (DESKTOP) ===== */}
         {!isMobile ? (
           <table className="tabela">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Produto</th>
-                <th>Quantidade</th>
+                <th>Qtd</th>
                 <th>Categoria</th>
                 <th>Fornecedor</th>
                 <th>Status</th>
@@ -130,13 +152,15 @@ export default function EstoqueTable() {
             </thead>
             <tbody>
               {dadosFiltrados.map((item) => (
-                <tr key={item.id}>
+                <tr key={item.id} className={getStatusClass(item)}>
                   <td>{item.id}</td>
                   <td>{item.produto}</td>
                   <td>{item.quantidade}</td>
                   <td>{item.categoria}</td>
                   <td>{item.fornecedor}</td>
-                  <td>{item.status}</td>
+                  <td>
+                    {item.status} {getStatusIcon(item)}
+                  </td>
                   <td>{item.preco}</td>
                   <td className="acoes">
                     <XCircle
@@ -158,14 +182,15 @@ export default function EstoqueTable() {
             </tbody>
           </table>
         ) : (
+          // ===== CARDS (MOBILE) =====
           dadosFiltrados.map((item) => (
-            <div className="card-estoque" key={item.id}>
+            <div className={`card-estoque ${getStatusClass(item)}`} key={item.id}>
               <div><strong>ID:</strong> {item.id}</div>
               <div><strong>Produto:</strong> {item.produto}</div>
-              <div><strong>Quantidade:</strong> {item.quantidade}</div>
+              <div><strong>Qtd:</strong> {item.quantidade}</div>
               <div><strong>Categoria:</strong> {item.categoria}</div>
               <div><strong>Fornecedor:</strong> {item.fornecedor}</div>
-              <div><strong>Status:</strong> {item.status}</div>
+              <div><strong>Status:</strong> {item.status} {getStatusIcon(item)}</div>
               <div><strong>Preço:</strong> {item.preco}</div>
               <div className="acoes">
                 <XCircle className="icone icone-excluir" onClick={() => setIdExcluir(item.id)} />
@@ -187,12 +212,8 @@ export default function EstoqueTable() {
             </div>
             <p>Tem certeza que deseja excluir este produto do estoque?</p>
             <div className="botoes-modal">
-              <button className="btn-cancelar" onClick={() => setIdExcluir(null)}>
-                Cancelar
-              </button>
-              <button className="btn-confirmar" onClick={excluirItem}>
-                Excluir
-              </button>
+              <button className="btn-cancelar" onClick={() => setIdExcluir(null)}>Cancelar</button>
+              <button className="btn-confirmar" onClick={excluirItem}>Excluir</button>
             </div>
           </div>
         </div>
@@ -216,9 +237,7 @@ export default function EstoqueTable() {
               <p><strong>Preço:</strong> {produtoSelecionado.preco}</p>
             </div>
             <div className="botoes-modal">
-              <button className="btn-confirmar" onClick={fecharModal}>
-                Fechar
-              </button>
+              <button className="btn-confirmar" onClick={fecharModal}>Fechar</button>
             </div>
           </div>
         </div>

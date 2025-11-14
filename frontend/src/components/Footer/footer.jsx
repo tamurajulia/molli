@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import './footer.css';
+import Link from "next/link";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function Footer() {
@@ -7,9 +8,10 @@ export default function Footer() {
     <footer className="footer">
       <div className="topRow">
         <nav className="navLinksFooter">
-          <a href="#">Home</a>
-          <a href="#">Filiais</a>
-          <a href="#">Sobre Nós</a>
+      <li><Link href="/cliente/Home">Home</Link></li>
+      <li><Link href="/cliente/Home#filiais">Filiais</Link></li>
+      <li><Link href="/cliente/Home#mvv">Sobre Nós</Link></li>
+      <li><Link href="/cliente/produtos">Catálogo</Link></li>
         </nav>
       </div>
       <div className="footerLine"></div>
@@ -35,7 +37,7 @@ export default function Footer() {
         <div className="rightSide">
           <div className="logoContainer">
             <Image
-              src="/FooterLogo.png"
+              src="/IMG/footer/FooterLogo.png"
               alt="Logo Molli"
               width={260}
               height={90}

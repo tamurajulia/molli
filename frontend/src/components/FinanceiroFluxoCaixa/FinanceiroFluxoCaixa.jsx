@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { TrendingUp, ShoppingCart, FileText, HelpCircle } from "lucide-react";
 import "./FluxoCaixaLoja.css";
@@ -23,11 +22,11 @@ const FinanceiroFluxoCaixa = () => {
     { name: "Dom", vendas: 31 },
   ];
 
-  // Gráfico SVG
   const maxY = Math.max(...data.map((d) => d.vendas));
   const height = 150;
   const width = 400;
   const stepX = width / (data.length - 1);
+
   const points = data
     .map((d, i) => {
       const x = i * stepX;
@@ -53,8 +52,10 @@ const FinanceiroFluxoCaixa = () => {
               <span className="tituloCard">{item.titulo}</span>
             </div>
             <div className="ladoBranco">
+              <span className="textoPequenoCinza">Vendas realizadas</span>
               <span className="valor">{item.valor}</span>
               <span className="total">{item.total}</span>
+              <span className="textoMiniCinza">Transações</span>
             </div>
           </div>
         ))}
@@ -80,16 +81,18 @@ const FinanceiroFluxoCaixa = () => {
                 strokeWidth="1"
               />
             ))}
-
-            <polyline fill="none" stroke="#6c9087" strokeWidth="2" points={points} />
-
+            <polyline
+              fill="none"
+              stroke="#6c9087"
+              strokeWidth="2"
+              points={points}
+            />
             {data.map((d, i) => {
               const x = i * stepX;
               const y = height - (d.vendas / maxY) * height;
               return <circle key={i} cx={x} cy={y} r="3.5" fill="#6c9087" />;
             })}
           </svg>
-
           <div className="eixoX">
             {data.map((d, i) => (
               <span key={i}>{d.name}</span>
@@ -122,7 +125,6 @@ const FinanceiroFluxoCaixa = () => {
               <option value="word">Word</option>
             </select>
           </div>
-
           <div className="campo">
             <label className="tituloRelatorio">Período:</label>
             <select>
@@ -132,39 +134,35 @@ const FinanceiroFluxoCaixa = () => {
               <option value="mensal">Mensal</option>
             </select>
           </div>
-
           <button className="btnBaixar">Baixar relatório</button>
         </div>
       </div>
 
-     {mostrarModal && (
-  <div className="modal-overlay" onClick={() => setMostrarModal(false)}>
-    <div className="modal-conteudo" onClick={(e) => e.stopPropagation()}>
-      <div className="modal-header">
-        <FileText size={22} className="iconeModal" />
-        <h3>Como gerar um relatório</h3>
-      </div>
-
-      <p className="textoModal">
-        Para gerar um relatório, siga os passos abaixo:
-      </p>
-
-      <ul className="listaModal">
-        <li>Selecione o formato desejado (PDF ou Word).</li>
-        <li>Escolha o período do relatório (Diário, Semanal ou Mensal).</li>
-        <li>Clique em <strong>"Baixar relatório"</strong> para gerar automaticamente.</li>
-      </ul>
-
-      <button
-        className="btnFiltrar"
-        onClick={() => setMostrarModal(false)}
-      >
-        Fechar
-      </button>
-    </div>
-  </div>
-)}
-
+      {/* --- MODAL --- */}
+      {mostrarModal && (
+        <div className="modal-overlay" onClick={() => setMostrarModal(false)}>
+          <div className="modal-conteudo" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <FileText size={22} className="iconeModal" />
+              <h3>Como gerar um relatório</h3>
+            </div>
+            <p className="textoModal">
+              Para gerar um relatório, siga os passos abaixo:
+            </p>
+            <ul className="listaModal">
+              <li>Selecione o formato desejado (PDF ou Word).</li>
+              <li>Escolha o período do relatório (Diário, Semanal ou Mensal).</li>
+              <li>
+                Clique em <strong>"Baixar relatório"</strong> para gerar
+                automaticamente.
+              </li>
+            </ul>
+            <button className="btnFiltrar" onClick={() => setMostrarModal(false)}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

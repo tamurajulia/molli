@@ -355,17 +355,25 @@ font-family: 'Montserrat', sans-serif;
   }
 }
 
-/* --- LISTA MODAL --- */
-.listaModal {
-  margin: 15px 0 25px 20px;
-  padding: 0;
-  color: #555;
-  font-size: 0.96rem;
-  line-height: 1.7;
-  list-style-type: decimal;
+
+
+.textoPequenoCinza {
+  font-size: 0.70rem;
+  color: #88888894;
+  
 }
 
-.listaModal li {
-  margin-bottom: 8px;
-  padding-left: 5px;
+
+
+.total {
+  font-size: 1rem;
+  color: #8FAAA3;
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.textoMiniCinza {
+  font-size: 0.65rem;
+  color: #aaaaaaad;
+  margin-top: 2px;
 }

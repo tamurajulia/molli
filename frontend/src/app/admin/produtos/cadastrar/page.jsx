@@ -9,7 +9,11 @@ export default function CadastroProduto() {
     <div className="cadastro-container">
       {/* Lado esquerdo - imagem */}
       <div className="lado-esquerdo">
-        <img src="/img/coelho-molli.png" alt="Molli" className="imagem-lateral" />
+        <img
+          src="/img/coelho-molli.png"
+          alt="Molli"
+          className="imagem-lateral"
+        />
       </div>
 
       {/* Lado direito - formulário */}
@@ -23,35 +27,67 @@ export default function CadastroProduto() {
         <hr className="linha" />
 
         <form className="formulario">
+          {/* Nome do Produto */}
           <div className="campo">
             <label>Nome do produto:</label>
-            <input type="text" placeholder="INSIRA O NOME COMPLETO" />
+            <input type="text" placeholder="Insira o nome do produto" required />
           </div>
 
+          {/* Categoria e SKU */}
           <div className="linha-dupla">
             <div className="campo metade">
               <label>Categoria:</label>
-              <input type="text" placeholder="SELECIONE A CATEGORIA" />
+              <input type="text" placeholder="Insira a categoria" required />
             </div>
             <div className="campo metade">
-              <label>Código de barras:</label>
-              <input type="text" placeholder="INSIRA O CÓDIGO" />
+              <label>SKU:</label>
+              <input type="text" placeholder="Insira o código SKU" required />
             </div>
           </div>
 
-          <div className="campo">
-            <label>Fornecedor:</label>
-            <input type="text" placeholder="SELECIONE O FORNECEDOR" />
+
+          {/* Preço Custo e Venda */}
+          <div className="linha-dupla">
+            <div className="campo metade">
+              <label>Preço Custo:</label>
+              <input
+                type="number"
+                step="0.01"
+                placeholder="Insira o preço do custo"
+              />
+            </div>
+            <div className="campo metade">
+              <label>Preço Venda:</label>
+              <input
+                type="number"
+                step="0.01"
+                placeholder="Insira o preço da venda"
+              />
+            </div>
           </div>
 
-          <div className="campo">
-            <label>Preço:</label>
-            <input type="text" placeholder="INSIRA O VALOR" />
+          {/* Estoques */}
+          <div className="linha-dupla">
+            <div className="campo metade">
+              <label>Estoque Mínimo:</label>
+              <input
+                type="number"
+                placeholder="Insira o estoque mínimo"
+                min="0"
+              />
+            </div>
+            <div className="campo metade">
+              <label>Estoque Atual:</label>
+              <input type="number" placeholder="Insira o estoque atual" />
+            </div>
           </div>
 
+          {/* Rodapé */}
           <div className="rodape">
             <span className="logo">Molli</span>
-            <button type="submit" className="botao">Criar Produto</button>
+            <button type="submit" className="botao">
+              Criar Produto
+            </button>
           </div>
         </form>
       </div>

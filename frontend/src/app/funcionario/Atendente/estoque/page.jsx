@@ -10,7 +10,7 @@ export default function EstoqueTable() {
   const [filtroFornecedor, setFiltroFornecedor] = useState("");
   const [dadosFiltrados, setDadosFiltrados] = useState([]);
   const [idExcluir, setIdExcluir] = useState(null);
-  const [produtoSelecionado, setProdutoSelecionado] = useState(null); // NOVO estado para detalhes
+  const [produtoSelecionado, setProdutoSelecionado] = useState(null); 
 
   const dados = [
     { id: "01", produto: "Touca Miguel", quantidade: 8, categoria: "Touca", fornecedor: "Mimos Baby", status: "Disponível", preco: "R$ 45,00" },
@@ -135,9 +135,9 @@ export default function EstoqueTable() {
                     <XCircle
                       className="icone icone-excluir"
                       title="Excluir"
-                      onClick={() => setIdExcluir(item.id)}
+                    
                     />
-                    <Link href="/admin/estoque/editar">
+                    <Link href="">
                       <Edit3 className="icone" title="Editar" />
                     </Link>
                     <PackageSearch
@@ -169,7 +169,6 @@ export default function EstoqueTable() {
         )}
       </div>
      
-      {/* MODAL DE DETALHES */}
       {produtoSelecionado && (
         <div className="modal-overlay" onClick={() => setProdutoSelecionado(null)}>
           <div className="modal-excluir" onClick={(e) => e.stopPropagation()}>

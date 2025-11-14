@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Clear+Sans&family=Montserrat:wght@600&display=swap');
-
-/* base */
 *,
 *::before,
 *::after {
@@ -13,7 +11,6 @@ body {
   font-family: 'Clear Sans', sans-serif;
 }
 
-/* container */
 .cadastro-container {
   width: 95%;
   max-width: 820px;
@@ -26,7 +23,6 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.04);
 }
 
-/* título */
 .titulo {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.35rem;
@@ -39,17 +35,15 @@ body {
 }
 
 .titulo-preto { color: #2e4d49; }
-.titulo-verde { color: #8faaa3; }
+.titulo-verde { color: #566363; }
 .iconeTitulo { color: #2e4d49; }
 
-/* form */
 .formulario {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-/* campos */
 label {
   font-weight: 600;
   margin-bottom: 6px;
@@ -80,7 +74,6 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(143,170,163,0.12);
 }
 
-/* layout de linhas */
 .linha {
   display: flex;
   gap: 14px;
@@ -99,7 +92,6 @@ input:focus {
   flex-direction: column;
 }
 
-/* rodapé */
 .rodape {
   display: flex;
   align-items: center;
@@ -110,13 +102,13 @@ input:focus {
 
 .logo {
   font-family: 'Montserrat', sans-serif;
-  color: #8faaa3;
+  color: #566363;
   font-size: 1.4rem;
   font-weight: 600;
 }
 
 .botao-criar {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -131,14 +123,12 @@ input:focus {
   background-color: #7a9590;
 }
 
-/* ----------------- RESPONSIVO ----------------- */
 @media (max-width: 900px) {
   .cadastro-container { padding: 24px; }
   .linha { gap: 12px; }
   .botao-criar { padding: 10px 20px; }
 }
 
-/* 📱 mobile: empilha tudo e garante que os inputs tenham o mesmo tamanho */
 @media (max-width: 700px) {
   .cadastro-container {
     padding: 20px 18px;
@@ -177,7 +167,6 @@ input:focus {
   }
 }
 
-/* extra pequeno */
 @media (max-width: 420px) {
   .cadastro-container { padding: 14px; }
   label { font-size: 0.9rem; }

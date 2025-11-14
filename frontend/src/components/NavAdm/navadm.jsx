@@ -1,14 +1,17 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./navadm.css";
 import ProfileModal from "../ProfileModal/ProfileModal";
 
 export default function NavAdm() {
   const [isOpen, setIsOpen] = useState(false);
-  const [hydrated, setHydrated] = useState(false); 
+  const [hydrated, setHydrated] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const router = useRouter(); 
 
   useEffect(() => {
     setHydrated(true);
@@ -30,7 +33,7 @@ export default function NavAdm() {
 
   useEffect(() => {
     if (hydrated) {
-      setLogoSrc("/IMG/navbar/LogoNav.png"); 
+      setLogoSrc("/IMG/navbar/LogoNav.png");
     }
   }, [hydrated]);
 
@@ -44,30 +47,11 @@ export default function NavAdm() {
     filial: "Unidade ADM - SP",
   };
 
-  if (!hydrated) {
-    return (
-      <aside className="sidebar closed">
-        <div className="top-section">
-          <img src={logoSrc} alt="Logo Molli" className="logo" />
-        </div>
-        <nav className="menu">
-          <i className="bi bi-speedometer2 menu-item"></i>
-          <i className="bi bi-graph-up-arrow menu-item"></i>
-          <i className="bi bi-people-fill menu-item"></i>
-          <i className="bi bi-box-seam menu-item"></i>
-          <i className="bi bi-geo-alt menu-item"></i>
-          <i className="bi bi-truck menu-item"></i>
-          <i className="bi bi-receipt menu-item"></i>
-          <i className="bi bi-shop menu-item"></i> 
-        </nav>
-        <div className="bottom-section">
-          <button className="toggle-btn" aria-label="Alternar menu" disabled>
-            <i className="bi bi-arrow-right"></i>
-          </button>
-        </div>
-      </aside>
-    );
-  }
+  const handleLogout = () => {
+    router.push("/"); 
+  };
+
+  if (!hydrated) return null;
 
   return (
     <>
@@ -108,22 +92,24 @@ export default function NavAdm() {
         </nav>
 
         <div className="bottom-section">
-          {isOpen && (
-            <div
-              className="user-box"
-              onClick={() => setIsProfileOpen(true)}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="avatar">
-                <i className="bi bi-person-circle"></i>
-              </div>
-              <div className="user-info">
+          <div className={`user-box ${isOpen ? "" : "collapsed"}`}>
+            <div className="avatar" onClick={() => setIsProfileOpen(true)}>
+              <i className="bi bi-person-circle"></i>
+            </div>
+            {isOpen && (
+              <div className="user-info" onClick={() => setIsProfileOpen(true)}>
                 <p className="user-name">{user.nome}</p>
                 <p className="user-role">{user.cargo}</p>
               </div>
-              <i className="bi bi-box-arrow-right logout-icon"></i>
-            </div>
-          )}
+            )}
+            {isOpen && (
+              <i
+                className="bi bi-box-arrow-right logout-icon"
+                onClick={handleLogout}
+                title="Sair"
+              ></i>
+            )}
+          </div>
         </div>
       </aside>
 

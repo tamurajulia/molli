@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+* {
+  font-family: 'Montserrat', sans-serif !important; 
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -267,3 +272,7 @@
   }
 }
 
+[data-state="delayed-open"]::before,
+[data-state="instant-open"]::before {
+  display: none !important;
+}

@@ -6,12 +6,9 @@ import "./cadastro.css";
 export default function CadastroFilial() {
   return (
     <div className="cadastro-filial-container">
-      {/* Lado esquerdo - imagem */}
       <div className="lado-esquerdo">
         <img src="/img/molli-loja.png" alt="Loja Molli" className="imagem-loja" />
       </div>
-
-      {/* Lado direito - formulário */}
       <div className="lado-direito">
         <h2 className="titulo">
           Cadastre sua <span className="titulo-destaque">filial</span>

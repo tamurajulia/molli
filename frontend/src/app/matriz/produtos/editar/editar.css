@@ -39,11 +39,11 @@ body {
 }
 
 .titulo strong {
-  color: #8faaa3;
+  color: #566363;
 }
 
 .iconeTitulo {
-  color: #8faaa3;
+  color: #566363;
 }
 
 .formulario {
@@ -77,7 +77,7 @@ body {
 }
 
 .campo input::placeholder {
-  color: #8faaa3;
+  color: #566363;
   font-size: 0.9rem;
 }
 
@@ -93,7 +93,7 @@ body {
 
 .botao {
   margin-top: 10px;
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;

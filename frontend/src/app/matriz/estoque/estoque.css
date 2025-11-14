@@ -12,7 +12,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* --- TÍTULO --- */
 .titulo {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
@@ -28,7 +27,7 @@ body {
 }
 
 .titulo-verde {
-  color: #8faaa3;
+  color: #566363;
 }
 
 .iconeTitulo {
@@ -36,7 +35,6 @@ body {
   margin-right: 4px;
 }
 
-/* --- FILTROS (copiado e ajustado do FinanceiroAdmSaida) --- */
 .filtros {
   display: flex;
   align-items: flex-end;
@@ -64,7 +62,7 @@ body {
   border: 1px solid transparent;
   padding: 10px 14px;
   font-size: 0.9rem;
-  color: #8faaa3;
+  color: #566363;
   border-radius: 9px;
   outline: none;
   transition:
@@ -92,14 +90,13 @@ body {
 .inputFocus:focus {
   border-color: rgba(143, 170, 163, 0.148);
   box-shadow: 0 0 0 3px #8faaa320;
-  color: #48645c;
+  color: #454f4f;
   font-weight: 600;
   background-color: #e7e7e7;
 }
 
-/* Botão Filtrar */
 .btnFiltrar {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -111,13 +108,12 @@ body {
 }
 
 .btnFiltrar:hover {
-  background-color: #7a9690;
+  background-color: #1d2121;
   transform: scale(1.03);
 }
 
-/* --- BOTÃO CADASTRAR --- */
 .botao-cadastrar {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -132,10 +128,9 @@ body {
 }
 
 .botao-cadastrar:hover {
-  background-color: #7a9690;
+  background-color: #2e3434;
 }
 
-/* --- TABELA --- */
 .tabelaContainer {
   background-color: #f7f9f8;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -144,7 +139,7 @@ body {
 
 .subtitulo {
   text-align: center;
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
@@ -161,7 +156,7 @@ body {
 }
 
 .tabela th {
-  background-color: #d4dedb;
+  background-color: #56636380;
   padding: 12px 10px;
   color: #222;
   font-weight: 600;
@@ -178,7 +173,6 @@ body {
   background-color: #f2f6f5;
 }
 
-/* ÍCONES */
 .acoes {
   display: flex;
   gap: 10px;
@@ -186,17 +180,16 @@ body {
 }
 
 .icone {
-  color: #8faaa3;
+  color: #566363;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .icone:hover {
   transform: scale(1.15);
-  color: #6d8982;
+  color: #232b29;
 }
 
-/* RESPONSIVO */
 @media (max-width: 600px) {
   .tabela {
     display: none;
@@ -225,7 +218,6 @@ body {
   color: #2E4D49;
 }
 
-/* --- MODAL EXCLUSÃO PADRÃO --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -302,7 +294,6 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Botão cancelar */
 .btn-cancelar {
   background-color: #f2f2f2;
   color: #333;
@@ -312,9 +303,8 @@ body {
   background-color: #e0e0e0;
 }
 
-/* Botão confirmar */
 .btn-confirmar {
-  background-color: #8FAAA3;
+  background-color: #566363;
   color: #fff;
 }
 
@@ -322,8 +312,6 @@ body {
   background-color: #5c6c68;
 }
 
-
-/* Fundo escuro do modal */
 .overlay {
   position: fixed;
   top: 0;
@@ -337,7 +325,6 @@ body {
   z-index: 999;
 }
 
-/* Caixa modal */
 .modal-excluir {
   background: #fff;
   padding: 25px;
@@ -356,7 +343,7 @@ body {
 .detalhes-produto strong {
   color: #2e4d49;
 }
-/* --- Modal Detalhes --- */
+
 .modal-detalhes {
   text-align: left;
   margin-bottom: 25px;
@@ -369,5 +356,5 @@ body {
 }
 
 .modal-detalhes strong {
-  color: #2e4d49;
+  color: #566363
 }

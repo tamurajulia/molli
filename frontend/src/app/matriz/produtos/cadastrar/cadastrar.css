@@ -50,7 +50,7 @@ body {
 }
 
 .titulo-verde {
-  color: #8faaa3;
+  color: #566363;
 }
 
 .iconeTitulo {
@@ -120,11 +120,11 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1.4rem;
-  color: #8faaa3;
+  color: #566363;
 }
 
 .botao {
-  background-color: #8faaa3;
+  background-color: #566363;
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
