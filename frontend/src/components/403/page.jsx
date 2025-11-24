@@ -10,10 +10,12 @@ import { getCookie } from 'cookies-next';
 export default function Forbidden({ allow, children }) {
   const router = useRouter();
   const [permitido, setPermitido] = useState(0);
+  const [nome, setNome] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setPermitido(getCookie('id_funcao'));
+    setNome(getCookie('nome'));
 
     setLoading(false);
   }, [allow]);
@@ -42,8 +44,8 @@ export default function Forbidden({ allow, children }) {
               <span className="num">3</span>
             </div>
             <p className="text">
-              Desculpe, mas você não tem acesso a esta página ou recurso por
-              algum motivo
+              Desculpe {nome}, mas você não tem acesso a esta página ou recurso
+              por algum motivo
             </p>
             <button onClick={goProfile}>Ir para o login Molli</button>
           </main>
