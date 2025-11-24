@@ -1,0 +1,57 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Footer from '../Footer/footer';
+import NavClient from '../NavClient/navClient';
+import './403.css';
+import { getCookie } from 'cookies-next';
+
+export default function Forbidden({ allow, children }) {
+  const router = useRouter();
+  const [permitido, setPermitido] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setPermitido(getCookie('id_funcao'));
+
+    setLoading(false);
+  }, [allow]);
+
+  const goProfile = () => {
+    router.push('/');
+  };
+
+  if (loading) return <h1>Carregando...</h1>;
+
+  if (allow != permitido) {
+    return (
+      <>
+        <NavClient />
+        <div className="forbidden-container">
+          <main className="forbidden-content">
+            <div className="illustration-403">
+              <span className="num">4</span>
+              <div className="door">
+                <div className="door-arch"></div>
+                <div className="door-tape tape1"></div>
+                <div className="door-tape tape2"></div>
+                <div className="door-tape tape3"></div>
+                <div className="handle"></div>
+              </div>
+              <span className="num">3</span>
+            </div>
+            <p className="text">
+              Desculpe, mas você não tem acesso a esta página ou recurso por
+              algum motivo
+            </p>
+            <button onClick={goProfile}>Ir para o login Molli</button>
+          </main>
+          <Footer />
+        </div>
+      </>
+    );
+  } else {
+    return <>{children}</>;
+  }
+}
