@@ -3,6 +3,7 @@ import {
   atualizarEstoque,
   excluirEstoque,
   criarEstoque,
+  lerTodoEstoque,
 } from '../models/Estoque.js';
 import { obterProdutoPorId, listarProdutos } from '../models/Produtos.js';
 import { obterCategoriaPorId } from '../models/Categoria.js';
@@ -20,6 +21,43 @@ const lerEstoquePorFilialController = async (req, res) => {
 
       return {
         id: estoque.id,
+        id_filial: estoque.id_filial,
+        produto: dadosProduto.nome,
+        quantidade: quantidade,
+        categoria: categoria.nome,
+        status:
+          quantidade > 15
+            ? 'Em estoque'
+            : quantidade <= 15 && quantidade > 0
+            ? 'Atenção'
+            : 'Sem estoque',
+        preco: dadosProduto.preco_venda,
+        atualizado_por: estoque.atualizado_por,
+      };
+    });
+
+    const estoqueComDados = await Promise.all(promises);
+
+    res.status(200).json(estoqueComDados);
+  } catch (err) {
+    console.error('Erro ao listar estoque por filial: ', err);
+    res.status(500).json({ mensagem: 'Erro ao listar estoque por filial' });
+  }
+};
+
+const lerEstoqueController = async (req, res) => {
+  try {
+    const estoque = await lerTodoEstoque();
+
+    const promises = estoque.map(async (estoque) => {
+      const dadosProduto = await obterProdutoPorId(estoque.id_produto);
+      const categoria = await obterCategoriaPorId(dadosProduto.id_categoria);
+
+      const quantidade = Number(estoque.quantidade);
+
+      return {
+        id: estoque.id,
+        id_filial: estoque.id_filial,
         produto: dadosProduto.nome,
         quantidade: quantidade,
         categoria: categoria.nome,
@@ -116,10 +154,57 @@ const criarEstoqueController = async (req, res) => {
   }
 };
 
+const criarEstoqueMatrizController = async (req, res) => {
+  try {
+    const id_filial = req.query.filial;
+    const nome = req.usuario.nome;
+    const { id_produto, quantidade } = req.query;
+
+    const data = {
+      id_produto: id_produto,
+      id_filial: id_filial,
+      quantidade: quantidade,
+      atualizado_por: `${nome} (Matriz)`,
+    };
+
+    const criar = await criarEstoque(data);
+
+    res.status(200).json(`Estoque criado ${criar}`);
+  } catch (err) {
+    console.error('Erro ao criar estoque: ', err);
+    res.status(500).json({ mensagem: 'Erro ao criar estoque' });
+  }
+};
+
+const listarProdutosSemEstoqueMatrizController = async (req, res) => {
+  try {
+    const id_filial = req.params.id;
+
+    const todosProdutos = await listarProdutos();
+    const estoqueAtual = await lerEstoquePorFilial(id_filial);
+    const idsProdutosComEstoque = estoqueAtual.map((item) => item.id_produto);
+
+    const produtosDisponiveis = todosProdutos
+      .filter((produto) => !idsProdutosComEstoque.includes(produto.id))
+      .map((produto) => ({
+        id: produto.id,
+        nome: produto.nome,
+      }));
+
+    res.status(200).json(produtosDisponiveis);
+  } catch (err) {
+    console.error('Erro ao listar produtos para cadastro: ', err);
+    res.status(500).json({ mensagem: 'Erro ao buscar produtos disponíveis' });
+  }
+};
+
 export {
   lerEstoquePorFilialController,
   atualizarEstoqueController,
   deletarEstoqueController,
   listarProdutosSemEstoqueController,
   criarEstoqueController,
+  lerEstoqueController,
+  criarEstoqueMatrizController,
+  listarProdutosSemEstoqueMatrizController,
 };

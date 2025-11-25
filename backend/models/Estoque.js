@@ -27,6 +27,15 @@ const lerEstoquePorFilial = async (id_filial) => {
   }
 };
 
+const lerTodoEstoque = async () => {
+  try {
+    const estoque = await readAll('estoque');
+    return estoque;
+  } catch (err) {
+    console.error('Erro ao buscar estoque por filial: ', err);
+  }
+};
+
 const atualizarEstoque = async (id_estoque, novaQtd) => {
   try {
     const atualizacao = await update('estoque', novaQtd, `id = ${id_estoque}`);
@@ -60,4 +69,5 @@ export {
   atualizarEstoque,
   excluirEstoque,
   criarEstoque,
+  lerTodoEstoque,
 };

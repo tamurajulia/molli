@@ -5,7 +5,6 @@
   font-family: 'Montserrat', sans-serif !important; 
 }
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -276,3 +275,4 @@
 [data-state="instant-open"]::before {
   display: none !important;
 }
+

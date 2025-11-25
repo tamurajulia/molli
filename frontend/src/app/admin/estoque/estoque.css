@@ -12,7 +12,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* --- TÍTULO --- */
 .titulo {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
@@ -36,7 +35,6 @@ body {
   margin-right: 4px;
 }
 
-/* --- FILTROS (copiado e ajustado do FinanceiroAdmSaida) --- */
 .filtros {
   display: flex;
   align-items: flex-end;
@@ -67,12 +65,8 @@ body {
   color: #8faaa3;
   border-radius: 9px;
   outline: none;
-  transition:
-    border-color 0.4s ease,
-    box-shadow 0.4s ease,
-    background-color 0.4s ease,
-    color 0.4s ease,
-    transform 0.2s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease,
+    background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
   width: 100%;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
@@ -97,7 +91,6 @@ body {
   background-color: #e7e7e7;
 }
 
-/* Botão Filtrar */
 .btnFiltrar {
   background-color: #8faaa3;
   color: white;
@@ -115,7 +108,6 @@ body {
   transform: scale(1.03);
 }
 
-/* --- BOTÃO CADASTRAR --- */
 .botao-cadastrar {
   background-color: #8faaa3;
   color: #fff;
@@ -135,10 +127,9 @@ body {
   background-color: #7a9690;
 }
 
-/* --- TABELA --- */
 .tabelaContainer {
   background-color: #f7f9f8;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -148,9 +139,13 @@ body {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.3rem;
-  text-transform: lowercase;
-  padding: 12px 0;
+  padding: 12px 0px 8px 0px;
   margin: 0;
+
+  border: none !important;
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .tabela {
@@ -178,11 +173,9 @@ body {
   background-color: #f2f6f5;
 }
 
-/* ÍCONES */
 .acoes {
   display: flex;
   gap: 10px;
-  justify-content: center;
 }
 
 .icone {
@@ -196,7 +189,6 @@ body {
   color: #6d8982;
 }
 
-/* RESPONSIVO */
 @media (max-width: 600px) {
   .tabela {
     display: none;
@@ -206,7 +198,7 @@ body {
     background: #f8faf9;
     padding: 15px;
     margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     border-left: 5px solid #8faaa3;
   }
 
@@ -221,11 +213,10 @@ body {
   }
 }
 
-.tituloInput{
-  color: #2E4D49;
+.tituloInput {
+  color: #2e4d49;
 }
 
-/* --- MODAL EXCLUSÃO PADRÃO --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -277,7 +268,7 @@ body {
 }
 
 .icone-modal {
-  color: #8FAAA3; 
+  color: #8faaa3;
 }
 
 .modal-excluir p {
@@ -302,7 +293,6 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Botão cancelar */
 .btn-cancelar {
   background-color: #f2f2f2;
   color: #333;
@@ -312,9 +302,8 @@ body {
   background-color: #e0e0e0;
 }
 
-/* Botão confirmar */
 .btn-confirmar {
-  background-color: #8FAAA3;
+  background-color: #8faaa3;
   color: #fff;
 }
 
@@ -322,8 +311,6 @@ body {
   background-color: #5c6c68;
 }
 
-
-/* Fundo escuro do modal */
 .overlay {
   position: fixed;
   top: 0;
@@ -337,15 +324,17 @@ body {
   z-index: 999;
 }
 
-/* Caixa modal */
 .modal-excluir {
   background: #fff;
   padding: 25px;
   border-radius: 12px;
-  width: 320px;
+  max-width: 90%;
+  width: 480px;
+  height: 296px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
+
 .detalhes-produto p {
   text-align: left;
   margin: 6px 0;
@@ -356,19 +345,56 @@ body {
 .detalhes-produto strong {
   color: #2e4d49;
 }
-/* --- Modal Detalhes --- */
-.modal-detalhes {
-  text-align: left;
+
+.modal-excluir2 {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 90%;
+  height: 450px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-excluir2 {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: subir 0.25s ease;
+}
+
+.modal-excluir2 p {
+  font-size: 0.95rem;
+  color: #555;
   margin-bottom: 25px;
 }
 
-.modal-detalhes p {
+.modal-editar {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-editar {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 520px;
+  min-height: 350px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: subir 0.25s ease;
+}
+
+.modal-editar p {
   font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 8px;
+  color: #555;
+  margin-bottom: 25px;
 }
-
-.modal-detalhes strong {
-  color: #2e4d49;
-}
-

@@ -5,12 +5,22 @@ import {
   deletarEstoqueController,
   listarProdutosSemEstoqueController,
   criarEstoqueController,
+  lerEstoqueController,
+  criarEstoqueMatrizController,
+  listarProdutosSemEstoqueMatrizController,
 } from '../controllers/EstoqueController.js';
 const router = express.Router();
 import authMiddleware from '../middlewares/authMiddlewares.js';
 
 router.get('/semestoque', authMiddleware, listarProdutosSemEstoqueController);
+router.get(
+  '/semestoque/:id',
+  authMiddleware,
+  listarProdutosSemEstoqueMatrizController
+);
+router.get('/matriz', lerEstoqueController);
 router.post('/', authMiddleware, criarEstoqueController);
+router.post('/matriz', authMiddleware, criarEstoqueMatrizController);
 router.get('/:id', lerEstoquePorFilialController);
 router.put('/:id', authMiddleware, atualizarEstoqueController);
 router.delete('/:id', authMiddleware, deletarEstoqueController);

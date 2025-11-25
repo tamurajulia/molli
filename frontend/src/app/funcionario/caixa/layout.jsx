@@ -1,4 +1,3 @@
-'use client';
 import Protecao from '@/components/403/page';
 
 export default function PDVLayout({ children }) {

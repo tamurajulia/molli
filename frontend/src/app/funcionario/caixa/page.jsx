@@ -26,9 +26,8 @@ import {
 } from '@/components/ui/tooltip';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { saveAs } from 'file-saver';
-import { getCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 
-// Função auxiliar para converter imagem em base64
 async function carregarImagemComoBase64(url) {
   const response = await fetch(url);
   const blob = await response.blob();
@@ -42,6 +41,7 @@ async function carregarImagemComoBase64(url) {
 export default function PDVPage() {
   const [produtos, setProdutos] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
+  const [carrinhoCarregado, setCarrinhoCarregado] = useState(false);
   const [filtro, setFiltro] = useState('todos');
   const [busca, setBusca] = useState('');
   const [pagamentoOpen, setPagamentoOpen] = useState(false);
@@ -68,13 +68,32 @@ export default function PDVPage() {
         alert('error');
       }
     } catch (error) {
-      console.error('Erro interno ao buscar produtos:', error);
+      console.error(error);
     }
   }
 
   useEffect(() => {
     fetchProdutos();
+
+    const dadosCookie = getCookie('carrinho_pdv');
+
+    if (dadosCookie) {
+      try {
+        const carrinhoJson = JSON.parse(dadosCookie);
+        setCarrinho(carrinhoJson);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    setCarrinhoCarregado(true);
   }, []);
+
+  useEffect(() => {
+    if (carrinhoCarregado) {
+      const carrinhoString = JSON.stringify(carrinho);
+      setCookie('carrinho_pdv', carrinhoString, { maxAge: 60 * 60 * 24 * 7 });
+    }
+  }, [carrinho, carrinhoCarregado]);
 
   const produtosFiltrados = useMemo(() => {
     return produtos.filter((p) => {
@@ -114,7 +133,6 @@ export default function PDVPage() {
     [carrinho]
   );
 
-  // Função que gera a nota fiscal PDF com logo
   async function gerarNotaFiscal(metodo, parcelas, subtotal) {
     const pdf = await PDFDocument.create();
     const page = pdf.addPage([400, 540]);
@@ -122,20 +140,17 @@ export default function PDVPage() {
     const font = await pdf.embedFont(StandardFonts.Courier);
     let y = height - 60;
 
-    // Carrega a logo
     const logoBase64 = await carregarImagemComoBase64(
       '/IMG/notaFiscal/imgnotafiscal.png'
-    ); // Caminho da logo que sera utilizada
+    );
     const logoBytes = await fetch(logoBase64).then((res) => res.arrayBuffer());
     const logoImage = await pdf.embedPng(logoBytes);
 
-    // Calcula posição centralizada da logo
     const logoWidth = 100;
     const logoHeight = 40;
     const logoX = (width - logoWidth) / 2;
     const logoY = height - 80;
 
-    // Adiciona logo ao PDF
     page.drawImage(logoImage, {
       x: logoX,
       y: logoY,
@@ -192,7 +207,6 @@ export default function PDVPage() {
     saveAs(blob, `Nota_Fiscal_${Date.now()}.pdf`);
   }
 
-  // 💳 Finaliza e gera nota
   const pagar = () => {
     if (metodo === 'crédito' && etapa === 1) {
       setEtapa(2);
@@ -213,7 +227,6 @@ export default function PDVPage() {
     <div className="flex h-screen max-h-screen overflow-hidden bg-[#f9faf9]">
       <Toaster richColors position="top-right" />
 
-      {/* LADO ESQUERDO */}
       <div className="flex-1 flex flex-col space-y-4 p-6 overflow-hidden">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -236,7 +249,6 @@ export default function PDVPage() {
           </div>
         </div>
 
-        {/* Produtos */}
         <div className="bg-white border rounded-xl p-4 flex-1 overflow-y-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {produtosFiltrados.map((p) => (
@@ -261,7 +273,6 @@ export default function PDVPage() {
           </div>
         </div>
 
-        {/* Filtros e categorias */}
         <div className="flex justify-between items-center">
           <button className="flex items-center gap-2 border-2 border-[#90A89A] text-[#8faaa3] px-5 py-2 rounded-xl text-[18px]">
             <SlidersHorizontal className="w-5 h-5" /> Filtros
@@ -308,7 +319,6 @@ export default function PDVPage() {
         </div>
       </div>
 
-      {/* CHECKOUT */}
       <div className="w-[360px] bg-white border-l rounded-l-xl p-4 flex flex-col overflow-hidden flex-shrink-0">
         <div className="flex-1 overflow-y-auto pr-2">
           <h2 className="text-[#90A89A] font-semibold text-xl mb-2">
@@ -362,7 +372,6 @@ export default function PDVPage() {
           )}
         </div>
 
-        {/* Totais e botão pagar */}
         {carrinho.length > 0 && (
           <div className="bg-[#90A89A]/10 rounded-md p-2 mt-2 space-y-1">
             <div className="flex justify-between font-semibold text-[#90A89A]">
@@ -384,7 +393,6 @@ export default function PDVPage() {
         </Button>
       </div>
 
-      {/* POPUP DE PAGAMENTO */}
       <Dialog open={pagamentoOpen} onOpenChange={setPagamentoOpen}>
         <DialogContent className="w-124 h-90 rounded-2xl flex flex-col justify-between">
           <DialogTitle className="sr-only">Pagamento</DialogTitle>

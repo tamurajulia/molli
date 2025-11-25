@@ -4,6 +4,7 @@ const port = 3001;
 import authRotas from './routes/authRotas.js';
 import produtoRotas from './routes/produtosRotas.js';
 import estoqueRotas from './routes/estoqueRotas.js';
+import filialRotas from './routes/filialRotas.js';
 import cors from 'cors';
 
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use('/auth', authRotas);
 app.use('/produtos', produtoRotas);
 app.use('/estoque', estoqueRotas);
+app.use('/filial', filialRotas);
 
 app.get('/', (req, res) => {
   res.status(200).send('API Molli funcionando!');
