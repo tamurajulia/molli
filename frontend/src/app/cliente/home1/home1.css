@@ -297,7 +297,7 @@ body {
   padding: 24px 20px 30px;
   text-align: center;
   width: 240px;
-  border-radius: 4px;
+  border-radius: 50px;
   transition: transform 0.3s ease;
 }
  
@@ -707,114 +707,111 @@ body {
 }
 
 .planos-section {
-  background-color: #fff;
-  padding: 80px 0 100px;
-  text-align: center;
-  font-family: "Playfair Display", serif;
-}
- 
-.planos-container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
- 
-.planos-title {
-  font-size: 38px;
-  color: #b0776f;
-  margin-bottom: 5px;
-  text-transform: lowercase;
-  font-weight: 600;
-}
- 
-.planos-subtitle {
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  color: #bba7a4;
-  font-weight: 400;
-  margin-bottom: 50px;
-  letter-spacing: 0.5px;
-}
- 
-.planos-cards {
+  padding: 60px 0;
   display: flex;
   justify-content: center;
-  align-items: stretch;
+}
+
+.planos-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #5e4a4a;
+}
+
+/* Container dos cards */
+.planos-cards {
+  display: flex;
   gap: 40px;
+  justify-content: center;
   flex-wrap: wrap;
 }
- 
+
+/* CARD BASE */
 .plano-card {
-  background-color: #faeeea;
-  border: 2px solid #e3cfc9;
-  border-radius: 10px;
-  padding: 30px 25px;
-  width: 260px;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+  width: 280px;
+  padding: 30px;
+  border-radius: 20px;
+  background: #ffffffcc;
+  border: 1px solid #e7d4d4;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+  text-align: center;
+  transition: .3s ease;
+  backdrop-filter: blur(6px);
 }
- 
+
 .plano-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
- 
+
+/* NOME DO PLANO */
 .plano-nome {
   font-size: 26px;
-  color: #b0776f;
-  margin: 0 0 5px;
-  font-weight: 600;
+  font-weight: 700;
+  color: #b38888;
+  margin-bottom: 5px;
 }
- 
-.plano-preco {
-  font-family: "Poppins", sans-serif;
-  font-size: 15px;
-  color: #6a4a45;
+
+/* SUBTÍTULO */
+.plano-sub {
+  font-size: 13px;
+  color: #7c6e6e;
   margin-bottom: 15px;
-  font-weight: 500;
 }
- 
-.plano-descricao {
-  font-family: "Poppins", sans-serif;
-  font-size: 13.5px;
-  color: #4f3c39;
-  line-height: 1.5;
-  margin: 0;
+
+/* PREÇO */
+.plano-preco {
+  font-size: 28px;
+  font-weight: 800;
+  color: #b98989;
+  margin-bottom: 25px;
 }
- 
-@media (max-width: 1024px) {
-  .planos-cards {
-    gap: 25px;
-  }
-  .plano-card {
-    width: 240px;
-  }
+
+/* LISTA DE BENEFÍCIOS */
+.plano-lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
 }
- 
-@media (max-width: 768px) {
-  .planos-section {
-    padding: 60px 0 80px;
-  }
-  .plano-card {
-    width: 85%;
-    max-width: 320px;
-  }
-  .planos-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-  .plano-card.destaque {
-    transform: none;
-  }
+
+.plano-lista li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 15px;
+  color: #5a4d4d;
+  padding: 8px 0;
+  justify-content: center;
 }
- 
-@media (max-width: 480px) {
-  .planos-title {
-    font-size: 30px;
-  }
-  .planos-subtitle {
-    font-size: 14px;
-  }
- 
+
+/* CARD DESTAQUE */
+.destaque {
+  background: linear-gradient(180deg, #ffeceb, #f8dcdc);
+  border: 2px solid #e3b5b5;
+  scale: 1.08;
+  position: relative;
 }
+
+/* TAG POPULAR */
+.tag-destaque {
+  background: #b97979;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+
  

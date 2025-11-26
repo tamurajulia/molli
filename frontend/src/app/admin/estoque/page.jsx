@@ -18,7 +18,7 @@ import { getCookie } from 'cookies-next';
 
 export default function EstoqueTable() {
   const [isMobile, setIsMobile] = useState(false);
-  const [dados, setDados] = useState([]);
+  const [dados, setDados] = useState([]); 
   const [dadosFiltrados, setDadosFiltrados] = useState([]);
   const [semEstoque, setSemEstoque] = useState([]);
 
@@ -137,6 +137,8 @@ export default function EstoqueTable() {
             Authorization: token,
           },
         }
+        
+    
       );
       const data = await res.json();
       if (res.ok) {
